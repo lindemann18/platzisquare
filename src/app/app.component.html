@@ -3,12 +3,14 @@
 </h1>
 <ul>
   <ng-container *ngFor="let lugar of lugares">
-      <li class="" *ngIf="lugar.active" [ngSwitch]="lugar.cercania">
-        {{lugar.nombre}} -
-        <span *ngSwitchCase="1" [ngStyle]="{color:'green'}">Muy Cercano</span>
-        <span *ngSwitchCase="2" [ngStyle]="{color:'black'}">Cercano</span>
-        <span *ngSwitchCase="3" [ngStyle]="{color:'red'}">Lejano</span>
-      </li>
+      <a contar-clicks>
+        <li class="" *ngIf="lugar.active" [ngSwitch]="lugar.cercania" [resaltar]="lugar.plan">
+          {{lugar.nombre}} -
+          <span *ngSwitchCase="1" [ngStyle]="{color:'green'}">Muy Cercano</span>
+          <span *ngSwitchCase="2" [ngStyle]="{color:'black'}">Cercano</span>
+          <span *ngSwitchCase="3" [ngStyle]="{color:'red'}">Lejano</span>
+        </li>
+      </a>
   </ng-container>
 </ul>
 
