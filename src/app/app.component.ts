@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app works!';
 
-  lat: number = 24.794779;
-  lng: number = -107.4370249;
+  lat: number = 24.7828658;
+  lng: number = -107.400825;
 
   lugares: any = [
     {plan: 'pagado', cercania: 1, distancia: 1, active: true, nombre:'Florería la Gardenia'},
