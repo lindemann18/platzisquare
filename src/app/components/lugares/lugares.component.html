@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Lugares cercanos</h2>
+      <a routerLink="/crear/new" class="btn btn-primary">Crear Nuevo Negocio</a>
       <ul class="list-group">
         <ng-container *ngFor="let lugar of lugares">
-              <a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action:'view',referer:'google.com'}">
-                <li contar-clicks class="list-group-item" *ngIf="lugar.active" [ngSwitch]="lugar.cercania" [resaltar]="lugar.plan">
+              <a routerLink="/crear/{{lugar.id}}" [queryParams]="{action:'view',referer:'google.com'}">
+                <li contar-clicks class="list-group-item" [ngSwitch]="lugar.cercania" [resaltar]="lugar.plan">
                   {{lugar.nombre}} -
                   <!-- -<span *ngSwitchCase="1" [ngStyle]="{color:'green'}">Muy Cercano</span>
                   <span *ngSwitchCase="2" [ngStyle]="{color:'black'}">Cercano</span>
@@ -20,8 +21,8 @@
     </div>
 
     <div class="col-md-8 offset-md-2">
-      <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      <agm-map [latitude]="lat" [longitude]="lng" >
+        <agm-marker *ngFor="let lugar of lugares" [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
       </agm-map>
     </div>
   </div>

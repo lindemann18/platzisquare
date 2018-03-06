@@ -8,6 +8,13 @@ import { ContarClicksDirective } from './directives/contar-clicks.directive';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { LugaresComponent } from './components/lugares/lugares.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { CrearComponent } from './components/crear/crear.component';
+import { LugaresService } from './services/lugares.service';
+
+// fire base
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AgmCoreModule } from '@agm/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,7 +24,17 @@ const appRoutes:Routes = [
   {path:'lugares', component:LugaresComponent},
   {path:'detalle/:id', component:DetalleComponent},
   {path:'contacto', component:ContactoComponent},
+  {path:'crear/:id', component:CrearComponent},
 ];
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAEa_j_MtbtXikE3r5YgG03kTSaDQ3HCiU",
+  authDomain: "platzisquare-df534.firebaseapp.com",
+  databaseURL: "https://platzisquare-df534.firebaseio.com",
+  projectId: "platzisquare-df534",
+  storageBucket: "platzisquare-df534.appspot.com",
+  messagingSenderId: '712945022723'
+};
 
 @NgModule({
   declarations: [
@@ -27,17 +44,21 @@ const appRoutes:Routes = [
     DetalleComponent,
     LugaresComponent,
     ContactoComponent,
+    CrearComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBdLnWLRYB1uOs1ajfu3XpBN6CcNKW2X5g'
+      apiKey: 'AIzaSyA3GGV-O_vrweaT7J_i-jKDRikYPki11rQ'
     }),
   ],
-  providers: [],
+  providers: [LugaresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
