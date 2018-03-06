@@ -7,6 +7,7 @@ import { ResaltarDirective } from './directives/resaltar.directive';
 import { ContarClicksDirective } from './directives/contar-clicks.directive';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { LugaresComponent } from './components/lugares/lugares.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ const appRoutes:Routes = [
   {path:'', component:LugaresComponent},
   {path:'lugares', component:LugaresComponent},
   {path:'detalle/:id', component:DetalleComponent},
+  {path:'contacto', component:ContactoComponent},
 ];
 
 @NgModule({
@@ -24,6 +26,7 @@ const appRoutes:Routes = [
     ContarClicksDirective,
     DetalleComponent,
     LugaresComponent,
+    ContactoComponent,
   ],
   imports: [
     BrowserModule,
