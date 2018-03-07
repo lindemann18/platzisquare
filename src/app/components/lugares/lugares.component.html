@@ -5,14 +5,16 @@
       <a routerLink="/crear/new" class="btn btn-primary">Crear Nuevo Negocio</a>
       <ul class="list-group">
         <ng-container *ngFor="let lugar of lugares">
-              <a routerLink="/crear/{{lugar.id}}" [queryParams]="{action:'view',referer:'google.com'}">
+
                 <li contar-clicks class="list-group-item" [ngSwitch]="lugar.cercania" [resaltar]="lugar.plan">
-                  {{lugar.nombre}} -
+                  <a routerLink="/crear/{{lugar.id}}"><h3>{{lugar.nombre | lowercase}}</h3></a>
                   <!-- -<span *ngSwitchCase="1" [ngStyle]="{color:'green'}">Muy Cercano</span>
                   <span *ngSwitchCase="2" [ngStyle]="{color:'black'}">Cercano</span>
                   <span *ngSwitchCase="3" [ngStyle]="{color:'red'}">Lejano</span> -->
+                  <br>
+                  <small>creado: {{lugar.id | date:'fullDate' | uppercase}}</small>
+                  <p [innerHtml]="lugar.descripcion | link"></p>
                 </li>
-              </a>
         </ng-container>
       </ul>
     </div>

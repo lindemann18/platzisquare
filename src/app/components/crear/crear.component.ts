@@ -26,12 +26,12 @@ export class CrearComponent {
         this.lugar.lng = response.json().results[0].geometry.location.lng;
 
 
-        if(this.id!='new') {
+        if(this.id=='new') {
+            this.lugar.id = Date.now();
             this._lugaresService.guardarLugar(this.lugar);
+            this.lugar = {};
         }else {
-          this.lugar.id = Date.now();
           this._lugaresService.editarLugar(this.lugar);
-          this.lugar = {};
         }
 
 

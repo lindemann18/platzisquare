@@ -10,6 +10,7 @@ import { LugaresComponent } from './components/lugares/lugares.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { CrearComponent } from './components/crear/crear.component';
 import { LugaresService } from './services/lugares.service';
+import { LinkPipe } from './pipes/link.pipe';
 
 // fire base
 import { AngularFireModule } from 'angularfire2';
@@ -45,6 +46,7 @@ export const firebaseConfig = {
     LugaresComponent,
     ContactoComponent,
     CrearComponent,
+    LinkPipe,
   ],
   imports: [
     BrowserModule,

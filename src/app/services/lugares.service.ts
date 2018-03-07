@@ -36,6 +36,7 @@ export class LugaresService {
   }
 
   public editarLugar(lugar:any) {
+    console.log('editing');
     this._afDB.database.ref('lugares/'+lugar.id).set(lugar);
   }
 
