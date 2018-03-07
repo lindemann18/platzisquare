@@ -1,24 +1,24 @@
 import {Injectable} from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database/database';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LugaresService {
-  public lugares: any = [
-    {id:1, plan: 'pagado', cercania: 1, distancia: 1, active: true, nombre:'Florería la Gardenia', descripcion: 'something'},
-    {id:2, plan: 'gratuito', cercania: 1, distancia: 1.8, active: true, nombre:'Donas la pasadita', descripcion: 'something'},
-    {id:3, plan: 'gratuito', cercania: 2, distancia: 5, active: true, nombre:'Veterinaria Huellitas Felices', descripcion: 'something'},
-    {id:4, plan: 'gratuito', cercania: 3, distancia: 10, active: false, nombre:'Sushi Suhiroll', descripcion: 'something'},
-    {id:5, plan: 'pagado', cercania: 3, distancia: 35, active: true, nombre:'Hotel la Gracia', descripcion: 'something'},
-    {id:6, plan: 'gratuito', cercania: 3, distancia: 120, active: true, nombre:'Zapatería el Clavo', descripcion: 'something'},
-  ];
+  public lugares: any;
+  public API_ENDPOINT:string = 'https://platzisquare-df534.firebaseio.com';
+  public headers:Headers = new Headers({"Content-Type":"application/json"});
 
   constructor(private _afDB:AngularFireDatabase, private _http:Http) {
 
   }
 
   public getLugares() {
-    return this._afDB.list('lugares/');
+    //return this._afDB.list('lugares/');
+    return this._http.get(this.API_ENDPOINT+'/.json')
+    .map((resultado) => {
+        return resultado.json().lugares;
+      });
   }
 
   public getLugar(id:number) {
@@ -30,7 +30,9 @@ export class LugaresService {
   }
 
   public guardarLugar(lugar:any) {
-    this._afDB.database.ref('lugares/'+lugar.id).set(lugar);
+    //this._afDB.database.ref('lugares/'+lugar.id).set(lugar);
+
+    return this._http.post(this.API_ENDPOINT+'/lugares.json',lugar,{headers:this.headers});
   }
 
   public editarLugar(lugar:any) {

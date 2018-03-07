@@ -13,9 +13,11 @@ export class DetalleComponent {
 
     constructor(private _route:ActivatedRoute, private _lugaresService:LugaresService) {
       this.id = this._route.snapshot.params['id'];
-      this.lugares = this._lugaresService.getLugares().valueChanges().subscribe(lugares => {
-        console.log(lugares)
-        this.lugares = lugares;
+      this.lugares = this._lugaresService.getLugares()
+      //.valueChanges()
+      .subscribe(lugares => {
+        console.log(lugares.json());
+        this.lugares = lugares.json();
       });
       this.lugar = this._lugaresService.buscarLugar(this.id);
     }

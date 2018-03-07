@@ -11,9 +11,17 @@ export class LugaresComponent {
     public lng: number = -107.400825;
     public lugares:any;
     constructor(private _lugaresService:LugaresService) {
-      this._lugaresService.getLugares().valueChanges().subscribe(lugares => {
-        console.log(lugares)
-        this.lugares = lugares;
-    });
+      this._lugaresService.getLugares()
+      //.valueChanges()
+      .subscribe(
+        lugares => {
+            this.lugares = Object.keys(lugares).map(function(key){return lugares[key]});
+            console.log(this.lugares);
+        },
+        error => {
+          console.log(error);
+          alert("tenemos dificultades disculpen las molestias");
+        }
+      );
     }
 }
