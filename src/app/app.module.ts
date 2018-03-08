@@ -10,7 +10,10 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { LugaresComponent } from './components/lugares/lugares.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { CrearComponent } from './components/crear/crear.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 import { LugaresService } from './services/lugares.service';
+import { AutorizacionService } from './services/autorizacion.service';
 import { LinkPipe } from './pipes/link.pipe';
 
 // fire base
@@ -21,12 +24,15 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AgmCoreModule } from '@agm/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 const appRoutes:Routes = [
   {path:'', component:LugaresComponent},
   {path:'lugares', component:LugaresComponent},
   {path:'detalle/:id', component:DetalleComponent},
   {path:'contacto', component:ContactoComponent},
   {path:'crear/:id', component:CrearComponent},
+  {path:'login', component:LoginComponent},
+  {path:'registro', component:RegistroComponent},
 ];
 
 export const firebaseConfig = {
@@ -48,6 +54,8 @@ export const firebaseConfig = {
     ContactoComponent,
     CrearComponent,
     LinkPipe,
+    LoginComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +70,7 @@ export const firebaseConfig = {
       apiKey: 'AIzaSyA3GGV-O_vrweaT7J_i-jKDRikYPki11rQ'
     }),
   ],
-  providers: [LugaresService],
+  providers: [LugaresService, AutorizacionService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
