@@ -8,11 +8,15 @@ import { AutorizacionService } from '../../services/autorizacion.service';
 })
 
 export class LoginComponent {
+  public loginData:any = {};
 
   constructor(private _autorizacionService:AutorizacionService) { }
 
   ngOnInit() {
-    console.log(this._autorizacionService.Login('a','a'));
+    console.log();
   }
 
+  login(){
+    this._autorizacionService.Login(this.loginData.email,this.loginData.password)
+  }
 }

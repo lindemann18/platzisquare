@@ -14,8 +14,13 @@ export class LugaresService {
   }
 
   public getLugares() {
+    let ls:any = null;
+    if(window.localStorage) {
+      ls = localStorage.getItem("firebase:authUser:AIzaSyAEa_j_MtbtXikE3r5YgG03kTSaDQ3HCiU:[DEFAULT]");
+      ls = JSON.parse(ls);
+    }
     //return this._afDB.list('lugares/');
-    return this._http.get(this.API_ENDPOINT+'/.json')
+    return this._http.get(this.API_ENDPOINT+'/.json?auth='+ls.stsTokenManager.accessToken)
     .map((resultado) => {
         return resultado.json().lugares;
       });

@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4">
-      <form action="" class="form card">
+      <form  class="form card" (ngSubmit)="login()">
         <div class="card-body">
           <div class="form-group">
             <label for="">User</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="loginData.email" name="email">
           </div>
           <div class="form-group">
             <label for="">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" [(ngModel)]="loginData.password" name="password">
           </div>
           <hr>
           <button class="btn btn-primary btn-block">Login</button>
