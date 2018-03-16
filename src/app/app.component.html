@@ -16,6 +16,9 @@
     </ul>
     <ul class="navbar-nav navbar-right" *ngIf="loggedIn">
       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  >{{loggedUser}}</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" (click)="logout()" >Logout</a>
       </li>
     </ul>
