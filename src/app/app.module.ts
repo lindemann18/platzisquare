@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LugaresService } from './services/lugares.service';
 import { AutorizacionService } from './services/autorizacion.service';
+import { MyGuard } from './services/my-guard.service';
 import { LinkPipe } from './pipes/link.pipe';
 
 // fire base
@@ -30,7 +31,7 @@ const appRoutes:Routes = [
   {path:'lugares', component:LugaresComponent},
   {path:'detalle/:id', component:DetalleComponent},
   {path:'contacto', component:ContactoComponent},
-  {path:'crear/:id', component:CrearComponent},
+  {path:'crear/:id', component:CrearComponent, canActivate:[MyGuard]},
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegistroComponent},
 ];
@@ -70,7 +71,7 @@ export const firebaseConfig = {
       apiKey: 'AIzaSyA3GGV-O_vrweaT7J_i-jKDRikYPki11rQ'
     }),
   ],
-  providers: [LugaresService, AutorizacionService,],
+  providers: [LugaresService, AutorizacionService, MyGuard, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

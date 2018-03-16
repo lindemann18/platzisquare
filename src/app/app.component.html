@@ -14,7 +14,12 @@
         <a class="nav-link" routerLink="/contacto" >Contacto</a>
       </li>
     </ul>
-    <ul class="navbar-nav navbar-right">
+    <ul class="navbar-nav navbar-right" *ngIf="loggedIn">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" (click)="logout()" >Logout</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right" *ngIf="!loggedIn">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/login" >Login</a>
       </li>

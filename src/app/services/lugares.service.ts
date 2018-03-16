@@ -15,12 +15,17 @@ export class LugaresService {
 
   public getLugares() {
     let ls:any = null;
+    let auth = '';
     if(window.localStorage) {
       ls = localStorage.getItem("firebase:authUser:AIzaSyAEa_j_MtbtXikE3r5YgG03kTSaDQ3HCiU:[DEFAULT]");
       ls = JSON.parse(ls);
+      if(ls) {
+          let auth = '?auth='+ls.stsTokenManager.accessToken;
+      }
     }
     //return this._afDB.list('lugares/');
-    return this._http.get(this.API_ENDPOINT+'/.json?auth='+ls.stsTokenManager.accessToken)
+    console.log(this.API_ENDPOINT+'/.json'+auth);
+    return this._http.get(this.API_ENDPOINT+'/.json'+auth)
     .map((resultado) => {
         return resultado.json().lugares;
       });
